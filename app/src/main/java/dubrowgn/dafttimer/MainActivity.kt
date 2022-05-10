@@ -40,10 +40,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(this::class.java.name, msg)
     }
 
-    private fun info(msg: String) {
-        Log.i(this::class.java.name, msg)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         debug("onCreate()")
 
@@ -121,10 +117,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun attachAlarm(alarm: Alarm) {
+        debug("attachAlarm(${alarm.id})")
+
         val tc = TimerControl(this, alarm)
 
         tc.onDelete = {
-            info("tc.onDelete(${tc.alarm.id})")
+            debug("tc.onDelete(${tc.alarm.id})")
 
             tickHandler.removeCallbacksAndMessages(alarm.id)
             layoutAlarms.removeView(tc)
@@ -140,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             alarmDao.delete(alarm)
         }
         tc.onPause = {
-            info("tc.onPause(${tc.alarm.id})")
+            debug("tc.onPause(${tc.alarm.id})")
 
             alarm.pause()
             alarmDao.update(alarm)
@@ -148,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             tickHandler.removeCallbacksAndMessages(alarm.id)
         }
         tc.onResume = {
-            info("tc.onResume(${tc.alarm.id})")
+            debug("tc.onResume(${tc.alarm.id})")
 
             alarm.unpause()
             alarmDao.update(alarm)
@@ -163,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tick(tc: TimerControl) {
-        info("tick(${tc.alarm.id})")
+        debug("tick(${tc.alarm.id})")
 
         val deltaMs = tc.alarm.update()
         tc.update()
@@ -254,6 +252,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createTimer() {
+        debug("createTimer()")
+
         if (duration.isZero)
             return
 

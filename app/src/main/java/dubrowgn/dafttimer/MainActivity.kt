@@ -124,6 +124,8 @@ class MainActivity : AppCompatActivity() {
         val tc = TimerControl(this, alarm)
 
         tc.onDelete = {
+            info("tc.onDelete(${tc.alarm.id})")
+
             tickHandler.removeCallbacksAndMessages(alarm.id)
             layoutAlarms.removeView(tc)
 
@@ -138,12 +140,16 @@ class MainActivity : AppCompatActivity() {
             alarmDao.delete(alarm)
         }
         tc.onPause = {
+            info("tc.onPause(${tc.alarm.id})")
+
             alarm.pause()
             alarmDao.update(alarm)
             tc.update()
             tickHandler.removeCallbacksAndMessages(alarm.id)
         }
         tc.onResume = {
+            info("tc.onResume(${tc.alarm.id})")
+
             alarm.unpause()
             alarmDao.update(alarm)
             tc.update()
@@ -157,7 +163,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tick(tc: TimerControl) {
-        info("tick(${tc.alarm.id.toString()})")
+        info("tick(${tc.alarm.id})")
 
         val deltaMs = tc.alarm.update()
         tc.update()
@@ -183,8 +189,7 @@ class MainActivity : AppCompatActivity() {
         layoutAlarms.children.forEach { v ->
             val tc = v as TimerControl
             cancelAlarmTimeout(tc.alarm)
-            if (!tc.alarm.expired)
-                tick(tc)
+            tick(tc)
         }
     }
 

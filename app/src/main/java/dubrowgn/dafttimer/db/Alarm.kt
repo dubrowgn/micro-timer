@@ -51,6 +51,10 @@ data class Alarm (
         val expiresMs = this.expiresMs ?: return null
 
         val nowMs = SystemClock.elapsedRealtime()
+        if (nowMs >= expiresMs) {
+            remaining.zero()
+            return null
+        }
 
         val deltaSec = ceil((expiresMs - nowMs) / 1000.0)
         remaining.subtractSeconds(remaining.totalSeconds - deltaSec.toUInt())

@@ -20,7 +20,7 @@ import dubrowgn.dafttimer.db.Database
 
 const val CHANNEL_ID = "daft-timer.alarm"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     private lateinit var alarmDao: AlarmDao
 
     private var duration: Dec6Duration = Dec6Duration()
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        supportActionBar?.hide()
+        actionBar?.hide()
         setContentView(R.layout.activity_main)
 
         layoutAlarms = findViewById(R.id.layoutAlarms)

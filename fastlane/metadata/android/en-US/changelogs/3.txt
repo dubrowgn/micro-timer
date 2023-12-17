@@ -1,0 +1,2 @@
+• Add additional logging
+• Normalize trace logging level

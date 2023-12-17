@@ -1,0 +1,2 @@
+• Always call tick() on resume
+• Add additional logging

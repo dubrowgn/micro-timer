@@ -52,9 +52,9 @@
             <ImageButton
                 android:id="@+id/btnClear"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:backgroundTint="#333"
-                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
             <dubrowgn.dafttimer.RoTimeControl
                 android:id="@+id/lblInput"
@@ -68,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#333"
                 android:foregroundTint="#FFFFFF"
-                app:srcCompat="@android:drawable/ic_input_delete" />
+                android:src="@android:drawable/ic_input_delete" />
 
         </LinearLayout>
 
@@ -242,7 +242,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#4CAF50"
                 android:foregroundTint="#FFFFFF"
-                app:srcCompat="@android:drawable/ic_media_play" />
+                android:src="@android:drawable/ic_media_play" />
 
         </LinearLayout>
     </LinearLayout>

@@ -46,7 +46,6 @@ class RoTimeControl : FrameLayout {
         lblValue = TextView(context)
         lblValue.layoutParams = LinearLayout.LayoutParams(matchParent, wrapContent)
         lblValue.hint = "HH:MM:SS"
-        lblValue.setTextColor(Color.WHITE)
         lblValue.setTextColor(Color.rgb(170, 170, 170))
         lblValue.textSize = 40f
         lblValue.textAlignment = View.TEXT_ALIGNMENT_CENTER

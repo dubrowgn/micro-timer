@@ -29,7 +29,6 @@ import dubrowgn.dafttimer.db.AlarmDao
 import dubrowgn.dafttimer.db.Database
 
 const val CHANNEL_ID = "daft-timer.alarm"
-const val settingsName = "settings"
 
 class MainActivity : Activity() {
     private lateinit var alarmDao: AlarmDao
@@ -135,7 +134,6 @@ class MainActivity : Activity() {
     }
 
     private fun initUi() {
-        actionBar?.hide()
         setContentView(R.layout.activity_main)
 
         layoutAlarms = findViewById(R.id.layoutAlarms)
@@ -154,7 +152,7 @@ class MainActivity : Activity() {
         findViewById<Button>(R.id.btn00).setOnClickListener { onDigit(0u); onDigit(0u) }
         findViewById<ImageButton>(R.id.btnBackspace).setOnClickListener { onBackspace() }
         findViewById<ImageButton>(R.id.btnClear).setOnClickListener { onClear() }
-        findViewById<ImageButton>(R.id.btnStart).setOnClickListener { createTimer() }
+        findViewById<Button>(R.id.btnStart).setOnClickListener { createTimer() }
     }
 
     private fun loadAlarms() {

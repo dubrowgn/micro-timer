@@ -22,7 +22,7 @@ data class Alarm (
     var expiresMs: Long? = null
 
     val expired: Boolean
-        get() = remaining.digits == 0u
+        get() = remaining.isZero
 
     val paused: Boolean
         get() = expiresMs == null

@@ -156,18 +156,19 @@ class MainActivity : Activity() {
     }
 
     private fun loadAlarms() {
+        debug("loadAlarms()")
         alarmDao
             .readAll()
             .map(::attachAlarm)
     }
 
-    private fun attachAlarm(alarm: Alarm) {
+    private fun attachAlarm(alarm: Alarm): TimerControl {
         debug("attachAlarm(${alarm.id})")
 
         val tc = TimerControl(this, alarm)
 
         tc.onDelete = {
-            debug("tc.onDelete(${tc.alarm.id})")
+            debug("tc.onDelete(${tc.alarm.id}); expired:${alarm.expired}, expiredCount:$expiredCount")
 
             tickHandler.removeCallbacksAndMessages(alarm.id)
             layoutAlarms.removeView(tc)
@@ -201,12 +202,13 @@ class MainActivity : Activity() {
             }
         }
 
-        tick(tc)
         layoutAlarms.addView(tc)
+
+        return tc
     }
 
     private fun tick(tc: TimerControl) {
-        debug("tick(${tc.alarm.id})")
+        debug("tick(${tc.alarm.id}); remaining:${tc.alarm.remaining.totalSeconds}s")
 
         val deltaMs = tc.alarm.update()
         tc.update()
@@ -308,7 +310,8 @@ class MainActivity : Activity() {
 
         val remaining = duration.clone()
         val alarm = alarmDao.create(remaining)
-        attachAlarm(alarm)
+        val tc = attachAlarm(alarm)
+        tick(tc)
 
         onClear()
     }

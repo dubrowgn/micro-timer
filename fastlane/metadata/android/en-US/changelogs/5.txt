@@ -1,0 +1,8 @@
+• Rename to "Micro Timer"
+• Add native support for Android 14
+• Request notification, background, and exact-alarm permissions as appropriate
+• Fix vibration not stopping correctly after closing app
+• Slightly improve style and colors
+• Reduce app APK size by ~92%
+• Update dependencies
+

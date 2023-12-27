@@ -4,6 +4,28 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
+def version = 4
+def is_debug = project.gradle.startParameter.taskNames.any {
+    name -> name.toLowerCase().contains("debug")
+}
+
+def gitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def versionString = { ->
+    if (is_debug) {
+        return "1.$version (${gitHash()})"
+    } else {
+        return "1.$version"
+    }
+}
+
 android {
     compileSdk 34
 
@@ -11,8 +33,8 @@ android {
         applicationId "dubrowgn.dafttimer"
         minSdk 28 // Handler.postDelayed()
         targetSdk 34
-        versionCode 4
-        versionName "1.4"
+        versionCode version
+        versionName versionString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

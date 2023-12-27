@@ -1,8 +1,10 @@
 package dubrowgn.dafttimer
 
+import android.Manifest.permission
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,7 +13,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.room.Room
 import dubrowgn.dafttimer.db.Alarm
@@ -19,6 +20,7 @@ import dubrowgn.dafttimer.db.AlarmDao
 import dubrowgn.dafttimer.db.Database
 
 const val CHANNEL_ID = "daft-timer.alarm"
+const val settingsName = "settings"
 
 class MainActivity : Activity() {
     private lateinit var alarmDao: AlarmDao
@@ -40,12 +42,39 @@ class MainActivity : Activity() {
         Log.d(this::class.java.name, msg)
     }
 
+    enum class Perm { Granted, Denied, NotAsked }
+
+    private fun getPerm(name: String) : Perm {
+        val settings = getSharedPreferences(settingsName, MODE_PRIVATE)
+        val perm =
+            if (checkSelfPermission(name) == PackageManager.PERMISSION_GRANTED)
+                Perm.Granted
+            else if (settings.getBoolean("${name}_ASKED", false))
+                Perm.Denied
+            else
+                Perm.NotAsked
+
+        debug("getPerm($name) = $perm")
+
+        return perm
+    }
+
+    private fun requestPerm(name: String) {
+        debug("requestPerm($name)")
+        getSharedPreferences(settingsName, MODE_PRIVATE)
+            .edit()
+            .putBoolean("${name}_ASKED", true)
+            .apply()
+        requestPermissions(arrayOf(name), 0)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         debug("onCreate()")
 
         super.onCreate(savedInstanceState)
 
         initDb()
+        initPerms()
         initNotes()
         initUi()
 
@@ -85,6 +114,11 @@ class MainActivity : Activity() {
                 description = "Sound and visual indicator"
             }
         )
+    }
+
+    private fun initPerms() {
+        if (getPerm(permission.POST_NOTIFICATIONS) == Perm.NotAsked)
+            requestPerm(permission.POST_NOTIFICATIONS)
     }
 
     private fun initUi() {

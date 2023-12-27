@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "dubrowgn.dafttimer"
-        minSdk 28
-        targetSdk 32
+        minSdk 28 // Handler.postDelayed()
+        targetSdk 34
         versionCode 4
         versionName "1.4"
 

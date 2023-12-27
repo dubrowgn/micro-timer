@@ -1,14 +1,23 @@
 package dubrowgn.dafttimer
 
 import android.Manifest.permission
-import android.app.*
+import android.app.Activity
+import android.app.AlarmManager
+import android.app.KeyguardManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.PowerManager
 import android.os.SystemClock
+import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -38,34 +47,14 @@ class MainActivity : Activity() {
     private val noteMgr
         get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+    private val powerMgr
+        get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+
     private fun debug(msg: String) {
         Log.d(this::class.java.name, msg)
     }
-
-    enum class Perm { Granted, Denied, NotAsked }
-
-    private fun getPerm(name: String) : Perm {
-        val settings = getSharedPreferences(settingsName, MODE_PRIVATE)
-        val perm =
-            if (checkSelfPermission(name) == PackageManager.PERMISSION_GRANTED)
-                Perm.Granted
-            else if (settings.getBoolean("${name}_ASKED", false))
-                Perm.Denied
-            else
-                Perm.NotAsked
-
-        debug("getPerm($name) = $perm")
-
-        return perm
-    }
-
-    private fun requestPerm(name: String) {
-        debug("requestPerm($name)")
-        getSharedPreferences(settingsName, MODE_PRIVATE)
-            .edit()
-            .putBoolean("${name}_ASKED", true)
-            .apply()
-        requestPermissions(arrayOf(name), 0)
+    private fun error(msg: String) {
+        Log.e(this::class.java.name, msg)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,8 +106,32 @@ class MainActivity : Activity() {
     }
 
     private fun initPerms() {
-        if (getPerm(permission.POST_NOTIFICATIONS) == Perm.NotAsked)
-            requestPerm(permission.POST_NOTIFICATIONS)
+        val pkgUri = Uri.parse("package:$packageName")
+
+        if(Build.VERSION.SDK_INT < 33) {
+            debug("not applicable: POST_NOTIFICATIONS")
+        } else if (checkSelfPermission(permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            debug("granted: POST_NOTIFICATIONS")
+        } else {
+            debug("requesting: POST_NOTIFICATIONS")
+            requestPermissions(arrayOf(permission.POST_NOTIFICATIONS), 0)
+        }
+
+        if (!powerMgr.isIgnoringBatteryOptimizations(packageName)) {
+            debug("requesting: IGNORE_BATTERY_OPTIMIZATIONS")
+            startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, pkgUri))
+        } else {
+            debug("granted: IGNORE_BATTERY_OPTIMIZATIONS")
+        }
+
+        if(Build.VERSION.SDK_INT < 31) {
+            debug("not applicable: SCHEDULE_EXACT_ALARM")
+        } else if (alarmMgr.canScheduleExactAlarms()) {
+            debug("granted: SCHEDULE_EXACT_ALARM")
+        } else {
+            debug("requesting: SCHEDULE_EXACT_ALARM")
+            startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, pkgUri))
+        }
     }
 
     private fun initUi() {
@@ -274,11 +287,15 @@ class MainActivity : Activity() {
         debug("startAlarmTimeout()")
 
         val remainingMs = alarm.remaining.totalSeconds.toLong() * 1000
-        alarmMgr.setExactAndAllowWhileIdle(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + remainingMs,
-            createAlarmIntent(alarm)
-        )
+        try {
+            alarmMgr.setExactAndAllowWhileIdle(
+                AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + remainingMs,
+                createAlarmIntent(alarm)
+            )
+        } catch (se: SecurityException) {
+            error("$se.message")
+        }
     }
 
     private fun cancelAlarmTimeout(alarm: Alarm) {

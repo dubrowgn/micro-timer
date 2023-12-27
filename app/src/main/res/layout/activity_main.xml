@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     android:background="#333"
     android:launchMode="singleTop"
-    android:padding="0dp"
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1" >
 
         <LinearLayout
             android:id="@+id/layoutAlarms"
@@ -27,13 +25,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#666"
-        android:orientation="horizontal" />
+        android:background="#666" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" >
 
         <ImageButton
             android:id="@+id/btnClear"
@@ -53,7 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="#333"
-            android:foregroundTint="#FFFFFF"
             android:src="@android:drawable/ic_input_delete" />
 
     </LinearLayout>
@@ -61,13 +56,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#666"
-        android:orientation="horizontal" />
+        android:background="#666" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn1"
@@ -75,10 +68,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="1"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -87,10 +80,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="2"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -100,17 +93,16 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="3"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn4"
@@ -118,10 +110,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="4"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -130,10 +122,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="5"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -143,17 +135,16 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="6"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn7"
@@ -161,10 +152,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="7"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -173,10 +164,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="8"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -186,17 +177,16 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:insetBottom="0dp"
             android:text="9"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn00"
@@ -204,9 +194,9 @@
             android:layout_height="86dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:text="00"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <Button
@@ -215,9 +205,9 @@
             android:layout_height="86dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/primary"
             android:text="0"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp" />
 
         <ImageButton
@@ -226,8 +216,7 @@
             android:layout_height="86dp"
             android:layout_marginLeft="2dp"
             android:layout_weight="1"
-            android:backgroundTint="#4CAF50"
-            android:foregroundTint="#FFFFFF"
+            android:backgroundTint="@color/start"
             android:src="@android:drawable/ic_media_play" />
 
     </LinearLayout>

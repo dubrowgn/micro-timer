@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_margin">2sp</dimen>
+    <dimen name="button_margin_h">-1.5dp</dimen>
+    <dimen name="button_margin_v">-3.5dp</dimen>
+    <dimen name="button_margin_out">2.5dp</dimen>
     <dimen name="text_size">28sp</dimen>
 </resources>

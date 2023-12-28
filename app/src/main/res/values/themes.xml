@@ -2,4 +2,18 @@
     <style name="Theme.MicroTimer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:statusBarColor">@color/primary_variant</item>
     </style>
+    <style name="PadButton">
+        <item name="android:layout_marginStart">@dimen/button_margin_h</item>
+        <item name="android:layout_marginEnd">@dimen/button_margin_h</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_v</item>
+        <item name="android:layout_marginTop">@dimen/button_margin_v</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="NumberButton" parent="PadButton">
+        <item name="android:backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/text_on_primary</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
 </resources>

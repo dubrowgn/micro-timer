@@ -30,7 +30,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "dubrowgn.dafttimer"
+        applicationId "dubrowgn.microtimer"
         minSdk 28 // Handler.postDelayed()
         targetSdk 34
         versionCode version
@@ -53,7 +53,7 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-    namespace 'dubrowgn.dafttimer'
+    namespace 'dubrowgn.microtimer'
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package dubrowgn.dafttimer
+package dubrowgn.microtimer
 
 import android.content.Context
 import android.media.AudioAttributes

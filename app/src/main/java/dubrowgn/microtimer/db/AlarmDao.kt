@@ -1,7 +1,7 @@
-package dubrowgn.dafttimer.db
+package dubrowgn.microtimer.db
 
 import androidx.room.*
-import dubrowgn.dafttimer.Dec6Duration
+import dubrowgn.microtimer.Dec6Duration
 
 @Dao
 interface AlarmDao {

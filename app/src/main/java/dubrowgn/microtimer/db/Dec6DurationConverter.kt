@@ -1,7 +1,7 @@
-package dubrowgn.dafttimer.db
+package dubrowgn.microtimer.db
 
 import androidx.room.TypeConverter
-import dubrowgn.dafttimer.Dec6Duration
+import dubrowgn.microtimer.Dec6Duration
 
 class Dec6DurationConverter {
     @TypeConverter

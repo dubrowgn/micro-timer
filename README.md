@@ -1,2 +1,3 @@
-# daft-timer
-A stupid simple timer app for Android
+# Micro Timer
+A tiny, microwave inspired timer app for Android.
+

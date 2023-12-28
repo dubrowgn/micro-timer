@@ -1,4 +1,4 @@
-package dubrowgn.dafttimer
+package dubrowgn.microtimer
 
 class Dec6Duration(var digits: UInt) {
 

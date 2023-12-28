@@ -1,4 +1,4 @@
-package dubrowgn.dafttimer
+package dubrowgn.microtimer
 
 import android.Manifest.permission
 import android.app.Activity
@@ -24,11 +24,11 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.room.Room
-import dubrowgn.dafttimer.db.Alarm
-import dubrowgn.dafttimer.db.AlarmDao
-import dubrowgn.dafttimer.db.Database
+import dubrowgn.microtimer.db.Alarm
+import dubrowgn.microtimer.db.AlarmDao
+import dubrowgn.microtimer.db.Database
 
-const val CHANNEL_ID = "daft-timer.alarm"
+const val CHANNEL_ID = "micro-timer.alarm"
 
 class MainActivity : Activity() {
     private lateinit var alarmDao: AlarmDao
@@ -274,7 +274,7 @@ class MainActivity : Activity() {
             this,
             alarm.id!!.toInt(),
             Intent(this, AlarmReceiver::class.java).apply {
-                action = "dubrowgn.dafttimer.ALARM_EXPIRED"
+                action = "dubrowgn.microtimer.ALARM_EXPIRED"
                 putExtra("id", alarm.id)
                 putExtra("name", alarm.duration.toString())
                 flags = 0

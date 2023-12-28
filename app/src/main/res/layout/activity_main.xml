@@ -38,7 +38,7 @@
             android:backgroundTint="#333"
             android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
-        <dubrowgn.dafttimer.RoTimeControl
+        <dubrowgn.microtimer.RoTimeControl
             android:id="@+id/lblInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

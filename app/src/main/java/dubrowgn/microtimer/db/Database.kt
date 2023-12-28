@@ -1,4 +1,4 @@
-package dubrowgn.dafttimer.db
+package dubrowgn.microtimer.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

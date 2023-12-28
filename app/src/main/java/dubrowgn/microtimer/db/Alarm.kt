@@ -1,10 +1,10 @@
-package dubrowgn.dafttimer.db
+package dubrowgn.microtimer.db
 
 import android.os.SystemClock
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dubrowgn.dafttimer.Dec6Duration
+import dubrowgn.microtimer.Dec6Duration
 import kotlin.math.ceil
 
 @Entity(tableName = "alarm")

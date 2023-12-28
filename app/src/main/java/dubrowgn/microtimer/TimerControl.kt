@@ -1,11 +1,11 @@
-package dubrowgn.dafttimer
+package dubrowgn.microtimer
 
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import dubrowgn.dafttimer.db.Alarm
+import dubrowgn.microtimer.db.Alarm
 
 class TimerControl(context: Context, val alarm: Alarm) : LinearLayout(context) {
     var onDelete: (() -> Unit)? = null

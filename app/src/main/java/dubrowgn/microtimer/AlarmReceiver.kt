@@ -46,7 +46,7 @@ class AlarmReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val builder = Notification.Builder(context, CHANNEL_ID)
+        val builder = Notification.Builder(context, alarmNoteChannel)
             .setAutoCancel(true)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
             .setContentTitle(context.getString(R.string.app_name))

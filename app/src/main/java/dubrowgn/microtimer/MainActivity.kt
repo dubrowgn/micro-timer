@@ -28,7 +28,7 @@ import dubrowgn.microtimer.db.Alarm
 import dubrowgn.microtimer.db.AlarmDao
 import dubrowgn.microtimer.db.Database
 
-const val CHANNEL_ID = "micro-timer.alarm"
+const val alarmNoteChannel = "micro-timer.alarm"
 
 class MainActivity : Activity() {
     private lateinit var alarmDao: AlarmDao
@@ -95,7 +95,7 @@ class MainActivity : Activity() {
     private fun initNotes() {
         noteMgr.createNotificationChannel(
             NotificationChannel(
-                CHANNEL_ID,
+                alarmNoteChannel,
                 "Alarm Expired",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {

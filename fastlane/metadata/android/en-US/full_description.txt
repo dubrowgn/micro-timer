@@ -1,0 +1,1 @@
+<i>Micro Timer</i> is a tiny, microwave-inspired timer app for Android. Instead of inventing yet another clever, pretty, tedious method of inputing time, <i>Micro Timer</i> uses the tried-and-true 10-key pad commonly found on microwave ovens.

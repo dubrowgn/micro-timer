@@ -123,13 +123,22 @@ class MainActivity : Activity() {
             debug("granted: IGNORE_BATTERY_OPTIMIZATIONS")
         }
 
-        if(Build.VERSION.SDK_INT < 31) {
+        if (Build.VERSION.SDK_INT < 31) {
             debug("not applicable: SCHEDULE_EXACT_ALARM")
         } else if (alarmMgr.canScheduleExactAlarms()) {
             debug("granted: SCHEDULE_EXACT_ALARM")
         } else {
             debug("requesting: SCHEDULE_EXACT_ALARM")
             startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, pkgUri))
+        }
+
+        if (Build.VERSION.SDK_INT < 34) {
+            debug("not applicable: USE_FULL_SCREEN_INTENT")
+        } else if (noteMgr.canUseFullScreenIntent()) {
+            debug("granted: USE_FULL_SCREEN_INTENT")
+        } else {
+            debug("requesting:  USE_FULL_SCREEN_INTENT")
+            startActivity(Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, pkgUri))
         }
     }
 

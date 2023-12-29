@@ -1,7 +1,7 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp'
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 def version = 6
@@ -12,7 +12,7 @@ def is_debug = project.gradle.startParameter.taskNames.any {
 def gitHash = { ->
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        commandLine "git", "rev-parse", "--short", "HEAD"
         standardOutput = stdout
     }
     return stdout.toString().trim()
@@ -27,38 +27,38 @@ def versionString = { ->
 }
 
 android {
-    compileSdk 34
+    compileSdk = 34
 
     defaultConfig {
-        applicationId "dubrowgn.microtimer"
-        minSdk 28 // Handler.postDelayed()
-        targetSdk 34
-        versionCode version
-        versionName versionString()
+        applicationId = "dubrowgn.microtimer"
+        minSdk = 28 // Handler.postDelayed()
+        targetSdk = 34
+        versionCode = version
+        versionName = versionString()
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = "17"
     }
-    namespace 'dubrowgn.microtimer'
+    namespace = "dubrowgn.microtimer"
 }
 
 dependencies {
     def room_version = "2.6.1"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    ksp "androidx.room:room-compiler:$room_version"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
 
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation("androidx.core:core-ktx:1.12.0")
 }

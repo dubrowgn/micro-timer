@@ -208,15 +208,19 @@ class MainActivity : Activity() {
     }
 
     private fun tick(tc: TimerControl) {
-        debug("tick(${tc.alarm.id}); remaining:${tc.alarm.remaining.totalSeconds}s")
-
         val deltaMs = tc.alarm.update()
         tc.update()
 
+        debug("tick(${tc.alarm.id}); remaining:${tc.alarm.remaining.totalSeconds}s")
+
         if (tc.alarm.expired) {
-            if (expiredCount == 0)
-                Vibration.start(this)
             expiredCount++
+
+            debug("alarm ${tc.alarm.id} expired; expiredCount:$expiredCount")
+
+            if (expiredCount == 1)
+                Vibration.start(this)
+
             return
         }
 
@@ -231,6 +235,7 @@ class MainActivity : Activity() {
 
         super.onResume()
 
+        expiredCount = 0
         layoutAlarms.children.forEach { v ->
             val tc = v as TimerControl
             cancelAlarmTimeout(tc.alarm)

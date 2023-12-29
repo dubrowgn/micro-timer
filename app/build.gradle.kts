@@ -1,28 +1,32 @@
+import java.io.ByteArrayOutputStream
+import java.util.Locale
+
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.android")
 }
 
-def version = 6
-def is_debug = project.gradle.startParameter.taskNames.any {
-    name -> name.toLowerCase().contains("debug")
+val version = 6
+val isDebug = project.gradle.startParameter.taskNames.any {
+    name -> name.lowercase(Locale.getDefault()).contains("debug")
 }
 
-def gitHash = { ->
-    def stdout = new ByteArrayOutputStream()
+fun gitHash(): String {
+    val stdout = ByteArrayOutputStream()
     exec {
-        commandLine "git", "rev-parse", "--short", "HEAD"
+        commandLine("git", "rev-parse", "--short", "HEAD")
         standardOutput = stdout
     }
+
     return stdout.toString().trim()
 }
 
-def versionString = { ->
-    if (is_debug) {
-        return "1.$version (${gitHash()})"
+fun versionString(): String {
+    return if (isDebug) {
+        "1.$version (${gitHash()})"
     } else {
-        return "1.$version"
+        "1.$version"
     }
 }
 
@@ -39,8 +43,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled = true
-            shrinkResources = true
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -55,10 +59,10 @@ android {
 }
 
 dependencies {
-    def room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     implementation("androidx.core:core-ktx:1.12.0")
 }

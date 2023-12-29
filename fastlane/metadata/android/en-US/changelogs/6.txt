@@ -1,0 +1,3 @@
+• Fix full screen intent on Android 14
+• Fix vibration issues when navigating away from the app with an expired alarm
+

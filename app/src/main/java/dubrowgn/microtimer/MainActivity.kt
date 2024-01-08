@@ -260,7 +260,7 @@ class MainActivity : Activity() {
         layoutAlarms.children.forEach { v ->
             val tc = v as TimerControl
             tickHandler.removeCallbacksAndMessages(tc.alarm.id)
-            if (!tc.alarm.expired)
+            if (!tc.alarm.expired && !tc.alarm.paused)
                 startAlarmTimeout(tc.alarm)
         }
 

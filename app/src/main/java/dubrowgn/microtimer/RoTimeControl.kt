@@ -1,7 +1,6 @@
 package dubrowgn.microtimer
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
@@ -46,7 +45,6 @@ class RoTimeControl : FrameLayout {
         lblValue = TextView(context)
         lblValue.layoutParams = LinearLayout.LayoutParams(matchParent, wrapContent)
         lblValue.hint = "HH:MM:SS"
-        lblValue.setTextColor(Color.rgb(170, 170, 170))
         lblValue.textSize = 40f
         lblValue.textAlignment = View.TEXT_ALIGNMENT_CENTER
         lblValue.typeface = Typeface.MONOSPACE

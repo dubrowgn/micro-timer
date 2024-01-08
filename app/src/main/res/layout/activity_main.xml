@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333"
     android:launchMode="singleTop"
     android:orientation="vertical"
     tools:context=".MainActivity" >
@@ -25,7 +24,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#666" />
+        android:background="@color/div" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,8 +34,9 @@
             android:id="@+id/btnClear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:backgroundTint="#333"
-            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+            android:backgroundTint="@color/background"
+            android:tint="@color/foreground"
+            android:src="@drawable/ico_clear" />
 
         <dubrowgn.microtimer.RoTimeControl
             android:id="@+id/lblInput"
@@ -48,15 +48,16 @@
             android:id="@+id/btnBackspace"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:backgroundTint="#333"
-            android:src="@android:drawable/ic_input_delete" />
+            android:backgroundTint="@color/background"
+            android:tint="@color/foreground"
+            android:src="@drawable/ico_backspace" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#666" />
+        android:background="@color/div" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -142,7 +143,7 @@
             style="@style/PadButton"
             android:id="@+id/btnStart"
             android:backgroundTint="@color/start"
-            android:foreground="@android:drawable/ic_media_play"
+            android:foreground="@drawable/ico_play_28"
             android:foregroundGravity="center" />
 
     </LinearLayout>

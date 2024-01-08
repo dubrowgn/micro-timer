@@ -1,0 +1,3 @@
+• Support light and dark modes
+• Fix paused alarms expiring when app is not active
+

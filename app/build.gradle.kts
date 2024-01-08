@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val version = 6
+val version = 7
 val isDebug = project.gradle.startParameter.taskNames.any {
     name -> name.lowercase(Locale.getDefault()).contains("debug")
 }

@@ -1,33 +1,7 @@
-import java.io.ByteArrayOutputStream
-import java.util.Locale
-
 plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.android")
-}
-
-val version = 7
-val isDebug = project.gradle.startParameter.taskNames.any {
-    name -> name.lowercase(Locale.getDefault()).contains("debug")
-}
-
-fun gitHash(): String {
-    val stdout = ByteArrayOutputStream()
-    exec {
-        commandLine("git", "rev-parse", "--short", "HEAD")
-        standardOutput = stdout
-    }
-
-    return stdout.toString().trim()
-}
-
-fun versionString(): String {
-    return if (isDebug) {
-        "1.$version (${gitHash()})"
-    } else {
-        "1.$version"
-    }
 }
 
 android {
@@ -37,8 +11,8 @@ android {
         applicationId = "dubrowgn.microtimer"
         minSdk = 28 // Handler.postDelayed()
         targetSdk = 34
-        versionCode = version
-        versionName = versionString()
+        versionCode = 8
+        versionName = "1.8"
     }
 
     buildTypes {

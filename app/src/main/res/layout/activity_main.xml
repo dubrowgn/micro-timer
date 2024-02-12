@@ -62,8 +62,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginHorizontal="@dimen/button_margin_out"
-        android:layout_marginTop="@dimen/button_margin_out" >
+        android:layout_marginHorizontal="@dimen/button_margin"
+        android:layout_marginTop="@dimen/button_margin" >
 
         <Button
             style="@style/NumberButton"
@@ -84,7 +84,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginHorizontal="@dimen/button_margin_out" >
+        android:layout_marginHorizontal="@dimen/button_margin" >
 
         <Button
             style="@style/NumberButton"
@@ -105,7 +105,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginHorizontal="@dimen/button_margin_out" >
+        android:layout_marginHorizontal="@dimen/button_margin" >
 
         <Button
             style="@style/NumberButton"
@@ -126,8 +126,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="@dimen/button_margin_out"
-        android:layout_marginHorizontal="@dimen/button_margin_out" >
+        android:layout_marginBottom="@dimen/button_margin"
+        android:layout_marginHorizontal="@dimen/button_margin" >
 
         <Button
             style="@style/NumberButton"
@@ -142,7 +142,7 @@
         <Button
             style="@style/PadButton"
             android:id="@+id/btnStart"
-            android:backgroundTint="@color/start"
+            android:backgroundTint="@color/action"
             android:foreground="@drawable/ico_play_28"
             android:foregroundGravity="center" />
 

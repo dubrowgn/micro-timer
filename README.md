@@ -13,4 +13,5 @@ Or download the latest APK from the [Releases Section](https://github.com/dubrow
 ![main](readme/main.png)
 
 ## Requirements
+
 * Android 9.0+

@@ -11,3 +11,6 @@ The idea was born when I realized I tended to use the kitchen microwave timer be
 Or download the latest APK from the [Releases Section](https://github.com/dubrowgn/micro-timer/releases/latest).
 
 ![main](readme/main.png)
+
+## Requirements
+* Android 9.0+

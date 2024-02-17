@@ -2,6 +2,7 @@
     <color name="background">#121212</color>
     <color name="foreground">#e0e0e0</color>
     <color name="div">#666</color>
+    <color name="ripple">#1fe0e0e0</color>
     <style name="Theme.MicroTimer" parent="android:Theme.DeviceDefault.NoActionBar">
         <item name="android:statusBarColor">@color/primary_variant</item>
         <item name="android:textColor">@color/foreground</item>

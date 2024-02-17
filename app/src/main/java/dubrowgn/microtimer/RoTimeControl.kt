@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import dubrowgn.microtimer.ui.ext.*
 
 class RoTimeControl : FrameLayout {
 
@@ -43,11 +44,11 @@ class RoTimeControl : FrameLayout {
         layoutParams = LinearLayout.LayoutParams(wrapContent, wrapContent)
 
         lblValue = TextView(context)
-        lblValue.layoutParams = LinearLayout.LayoutParams(matchParent, wrapContent)
-        lblValue.hint = "HH:MM:SS"
-        lblValue.textSize = 40f
-        lblValue.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        lblValue.typeface = Typeface.MONOSPACE
+            .withLayout(matchParent, wrapContent)
+            .withHint("HH:MM:SS")
+            .withTextSize(40f)
+            .withTextAlign(View.TEXT_ALIGNMENT_CENTER)
+            .withTypeface(Typeface.MONOSPACE)
         addView(lblValue)
     }
 }

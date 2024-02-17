@@ -1,12 +1,12 @@
 package dubrowgn.microtimer
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.Gravity
 import android.widget.Button
 import android.widget.LinearLayout
 import dubrowgn.microtimer.db.Alarm
+import dubrowgn.microtimer.ui.ext.*
 
 class TimerControl(context: Context, val alarm: Alarm) : LinearLayout(context) {
     var onDelete: (() -> Unit)? = null
@@ -26,39 +26,52 @@ class TimerControl(context: Context, val alarm: Alarm) : LinearLayout(context) {
         layoutParams = LayoutParams(matchParent, wrapContent)
         orientation = HORIZONTAL
 
-        val red = Color.rgb(233, 30, 30)
-        val green = Color.rgb(76, 175, 80)
-        val white = Color.rgb(255, 255, 255)
+        val icoDelete = context.getDrawable(R.drawable.ico_delete)
+        val icoPlay = context.getDrawable(R.drawable.ico_play)
+        val icoPause = context.getDrawable(R.drawable.ico_pause)
+
+        val btnSizePx = resources.getDimension(R.dimen.icon_button_size).toInt()
+        val btnMarginPx = resources.getDimension(R.dimen.button_margin).toInt()
+
+        val fgColor = context.getColor(R.color.text_on_primary)
+        val actColor = context.getColor(R.color.action)
+        val delColor = context.getColor(R.color.delete)
+
+        val lp = LayoutParams(btnSizePx, btnSizePx)
+            .withMargins(btnMarginPx)
 
         val btnDelete = Button(context)
-        btnDelete.layoutParams = LayoutParams(wrapContent, matchParent)
-        btnDelete.backgroundTintList = ColorStateList.valueOf(red)
-        btnDelete.foregroundTintList = ColorStateList.valueOf(white)
-        btnDelete.foreground = context.getDrawable(R.drawable.ico_delete)
-        btnDelete.foregroundGravity = Gravity.CENTER
-        btnDelete.setOnClickListener { onDelete?.invoke() }
+            .withLayout(lp)
+            .withBg(context.getDrawable(R.drawable.btn_selector))
+            .withBgTint(delColor)
+            .withFgTint(fgColor)
+            .withFg(icoDelete)
+            .withFgGravity(Gravity.CENTER)
+            .withOnClick { onDelete?.invoke() }
         addView(btnDelete)
 
         lblValue = RoTimeControl(context)
-        lblValue.layoutParams = LayoutParams(0, matchParent, 1f)
+            .withLayout(0, matchParent, 1f)
         addView(lblValue)
 
         btnPause = Button(context)
-        btnPause.layoutParams = LayoutParams(wrapContent, matchParent)
-        btnPause.backgroundTintList = ColorStateList.valueOf(green)
-        btnPause.foregroundTintList = ColorStateList.valueOf(white)
-        btnPause.foreground = context.getDrawable(R.drawable.ico_pause)
-        btnPause.foregroundGravity = Gravity.CENTER
-        btnPause.setOnClickListener { onPause?.invoke() }
+            .withLayout(LayoutParams(lp))
+            .withBg(context.getDrawable(R.drawable.btn_selector))
+            .withBgTint(actColor)
+            .withFgTint(fgColor)
+            .withFg(icoPause)
+            .withFgGravity(Gravity.CENTER)
+            .withOnClick { onPause?.invoke() }
         addView(btnPause)
 
         btnResume = Button(context)
-        btnResume.layoutParams = LayoutParams(wrapContent, matchParent)
-        btnResume.backgroundTintList = ColorStateList.valueOf(green)
-        btnResume.foregroundTintList = ColorStateList.valueOf(white)
-        btnResume.foreground = context.getDrawable(R.drawable.ico_play)
-        btnResume.foregroundGravity = Gravity.CENTER
-        btnResume.setOnClickListener { onResume?.invoke() }
+            .withLayout(LayoutParams(lp))
+            .withBg(context.getDrawable(R.drawable.btn_selector))
+            .withBgTint(actColor)
+            .withFgTint(fgColor)
+            .withFg(icoPlay)
+            .withFgGravity(Gravity.CENTER)
+            .withOnClick { onResume?.invoke() }
         // don't add; paused by default
     }
 
@@ -66,8 +79,9 @@ class TimerControl(context: Context, val alarm: Alarm) : LinearLayout(context) {
         lblValue.setValue(alarm.remaining)
         if (alarm.remaining.digits == 0u) {
             lblValue.setColor(Color.RED)
-            btnPause.isEnabled = false
-            btnPause.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+            btnPause
+                .withEnabled(false)
+                .withBgTint(Color.GRAY)
         }
 
         if (paused == alarm.paused)

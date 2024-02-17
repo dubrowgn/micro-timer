@@ -159,8 +159,8 @@ class MainActivity : Activity() {
         findViewById<Button>(R.id.btn8).setOnClickListener { onDigit(8u) }
         findViewById<Button>(R.id.btn9).setOnClickListener { onDigit(9u) }
         findViewById<Button>(R.id.btn00).setOnClickListener { onDigit(0u); onDigit(0u) }
-        findViewById<ImageButton>(R.id.btnBackspace).setOnClickListener { onBackspace() }
-        findViewById<ImageButton>(R.id.btnClear).setOnClickListener { onClear() }
+        findViewById<Button>(R.id.btnBackspace).setOnClickListener { onBackspace() }
+        findViewById<Button>(R.id.btnClear).setOnClickListener { onClear() }
         findViewById<Button>(R.id.btnStart).setOnClickListener { createTimer() }
     }
 

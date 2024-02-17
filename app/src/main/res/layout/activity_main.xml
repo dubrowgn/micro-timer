@@ -30,13 +30,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageButton
+        <Button
+            style="@style/Button"
             android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:backgroundTint="@color/background"
-            android:tint="@color/foreground"
-            android:src="@drawable/ico_clear" />
+            android:foreground="@drawable/ico_clear"
+            android:foregroundGravity="center"
+            android:foregroundTint="@color/foreground"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="match_parent"
+            android:outlineProvider="none" />
 
         <dubrowgn.microtimer.RoTimeControl
             android:id="@+id/lblInput"
@@ -44,13 +47,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <ImageButton
+        <Button
+            style="@style/Button"
             android:id="@+id/btnBackspace"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:backgroundTint="@color/background"
-            android:tint="@color/foreground"
-            android:src="@drawable/ico_backspace" />
+            android:foreground="@drawable/ico_backspace"
+            android:foregroundGravity="center"
+            android:foregroundTint="@color/foreground"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="match_parent"
+            android:outlineProvider="none" />
 
     </LinearLayout>
 

@@ -10,6 +10,8 @@ android {
     defaultConfig {
         applicationId = "dubrowgn.microtimer"
         minSdk = 28 // Handler.postDelayed()
+        // work around unused library resources
+        resourceConfigurations.addAll(listOf("anydpi", "en"))
         targetSdk = 34
         versionCode = 8
         versionName = "1.8"

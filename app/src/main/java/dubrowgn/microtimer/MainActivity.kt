@@ -20,7 +20,6 @@ import android.os.SystemClock
 import android.provider.Settings
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.room.Room

@@ -1,0 +1,3 @@
+• Fix button style issues on some devices
+• Reduce APK weight by ~22%
+
